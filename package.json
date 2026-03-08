@@ -1,23 +1,36 @@
 {
   "name": "geo-picker",
-  "displayName": "geo-picker",
+  "displayName": "Geo Picker",
   "description": "Pick and insert lat/long coordinates from a map",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "repository": "https://github.com/corcordan/geo-picker",
+  "bugs": "https://github.com/corcordan/geo-picker/issues",
   "engines": {
     "vscode": "^1.109.0"
   },
+  "activationEvents": [
+    "onCommand:geoPicker.pickCoordinate"
+  ],
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "geo-picker.helloWorld",
-        "title": "Hello World"
+        "command": "geoPicker.pickCoordinate",
+        "title": "Add Coordinate"
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "geoPicker.pickCoordinate",
+          "group": "navigation",
+          "when": "editorTextFocus"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
