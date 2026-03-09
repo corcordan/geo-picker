@@ -46,6 +46,10 @@ This extension does not contribute any user-configurable settings.
 
 ## Release Notes
 
+### 1.0.3
+
+- Added more tests
+
 ### 1.0.2
 
 - Fixed minor mistakes in documentation

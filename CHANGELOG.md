@@ -31,6 +31,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Made minor changes to documentation
 
+## [1.0.3] - 2026-03-09
+
+### Added
+
+- Created more tests
+
 ## [Unreleased]
 
 - Add GIF demonstrations to README
