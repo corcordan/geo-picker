@@ -65,6 +65,10 @@ export function getWebviewContent() {
 				<option value="5">5</option>
 				<option value="6">6</option>
 			</select>
+			<div style="margin: 10px 0;">
+				<strong>Expected Output:</strong><br>
+				<input type="text" id="output" readonly style="width: 100%; padding: 5px; margin-top: 5px; font-family: monospace;">
+			</div>
 			<button onclick="sendCoordinate()">Insert Coordinate</button>
 
 			<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -82,7 +86,41 @@ export function getWebviewContent() {
 					if (marker) map.removeLayer(marker);
 					marker = L.marker(e.latlng).addTo(map);
 					window.selectedLatLng = e.latlng;
+					updateOutput();
 				});
+
+				document.getElementById('format').addEventListener('change', updateOutput);
+				document.getElementById('precision').addEventListener('change', updateOutput);
+
+				function updateOutput() {
+					if (window.selectedLatLng) {
+						const format = document.getElementById('format').value;
+						const precision = parseInt(document.getElementById('precision').value);
+						const lat = window.selectedLatLng.lat.toFixed(precision);
+						const lng = window.selectedLatLng.lng.toFixed(precision);
+						let output = '';
+						switch (format) {
+							case 'lat, lng':
+								output = \`\${lat}, \${lng}\`;
+								break;
+							case 'lng, lat':
+								output = \`\${lng}, \${lat}\`;
+								break;
+							case '[lat, lng]':
+								output = \`[\${lat}, \${lng}]\`;
+								break;
+							case '[lng, lat]':
+								output = \`[\${lng}, \${lat}]\`;
+								break;
+							case '{lat: x, lng: y}':
+								output = \`{lat: \${lat}, lng: \${lng}}\`;
+								break;
+							default:
+								output = \`\${lat}, \${lng}\`;
+						}
+						document.getElementById('output').value = output;
+					}
+				}
 
 				function sendCoordinate() {
 					if(window.selectedLatLng){
@@ -120,22 +158,22 @@ export async function insertCoordinate(
 
 	switch (format) {
 		case 'lat, lng':
-			text = `${formattedLat}, ${formattedLng}\n`;
+			text = `${formattedLat}, ${formattedLng}`;
 			break;
 		case 'lng, lat':
-			text = `${formattedLng}, ${formattedLat}\n`;
+			text = `${formattedLng}, ${formattedLat}`;
 			break;
 		case '[lat, lng]':
-			text = `[${formattedLat}, ${formattedLng}]\n`;
+			text = `[${formattedLat}, ${formattedLng}]`;
 			break;
 		case '[lng, lat]':
-			text = `[${formattedLng}, ${formattedLat}]\n`;
+			text = `[${formattedLng}, ${formattedLat}]`;
 			break;
 		case '{lat: x, lng: y}':
-			text = `{lat: ${formattedLat}, lng: ${formattedLng}}\n`;
+			text = `{lat: ${formattedLat}, lng: ${formattedLng}}`;
 			break;
 		default:
-			text = `${formattedLat}, ${formattedLng}\n`;
+			text = `${formattedLat}, ${formattedLng}`;
 	}
 
 	await editor.edit(editBuilder => {

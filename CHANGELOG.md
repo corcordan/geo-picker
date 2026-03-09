@@ -4,7 +4,7 @@ All notable changes to the "geo-picker" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [1.0.0] - 2026-03-07
+## [1.0.0] - 2026-03-08
 
 ### Added
 
@@ -13,4 +13,18 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Configurable decimal precision (4-6 places).
 - Automatic clipboard copying of inserted coordinates.
 
+## [1.0.1] - 2026-03-09
+
+### Added
+
+- Real-time preview of expected coordinate output in the map panel
+- Extension icon in VS Code marketplace
+
+### Fixed
+
+- Removed trailing newline when inserting coordinates
+- Icon not displaying due to missing package.json reference
+
 ## [Unreleased]
+
+- Add GIF demonstrations to README
