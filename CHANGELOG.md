@@ -13,7 +13,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Configurable decimal precision (4-6 places).
 - Automatic clipboard copying of inserted coordinates.
 
-## [1.0.1] - 2026-03-09
+## [1.0.2] - 2026-03-09
 
 ### Added
 

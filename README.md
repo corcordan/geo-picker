@@ -46,7 +46,7 @@ This extension does not contribute any user-configurable settings.
 
 ## Release Notes
 
-### 1.0.1
+### 1.0.2
 
 - Added real-time preview of expected coordinate output in the map panel
 - Fixed icon display in VS Code marketplace
