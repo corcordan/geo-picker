@@ -48,6 +48,10 @@ This extension does not contribute any user-configurable settings.
 
 ### 1.0.2
 
+- Fixed minor mistakes in documentation
+
+### 1.0.1
+
 - Added real-time preview of expected coordinate output in the map panel
 - Fixed icon display in VS Code marketplace
 - Removed trailing newline when inserting coordinates
