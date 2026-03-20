@@ -37,6 +37,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Created more tests
 
-## [Unreleased]
+### [1.0.4] - 2026-03-20
 
-- Add GIF demonstrations to README
+- Added gif for instructions
+
+## [Unreleased]

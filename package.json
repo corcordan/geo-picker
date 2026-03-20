@@ -2,7 +2,7 @@
   "name": "geo-picker",
   "displayName": "Geo Picker",
   "description": "Pick and insert lat/long coordinates from a map",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "icon": "images/icon.png",
   "publisher": "corcordan-dev",
   "repository": "https://github.com/corcordan/geo-picker",
