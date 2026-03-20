@@ -48,7 +48,7 @@ This extension does not contribute any user-configurable settings.
 
 ### 1.0.4
 
-- Added instructional gif
+- Added instructional gifs
 
 ### 1.0.3
 
@@ -71,5 +71,15 @@ Initial release – pick and insert latitude/longitude coordinates via a map.
 
 ## Tips
 
-![Instructions](https://github.com/corcordan/geo-picker/blob/main/images/instructions.gif)
+### How to open the map to add a coordinate
+
+![Instructions1](/images/instructions1.gif)
+
+### How to configure coordinate settings
+
+![Instructions2](/images/instructions1.gif)
+
+### How to insert and paste the coordinate
+
+![Instructions3](/images/instructions1.gif)
 
