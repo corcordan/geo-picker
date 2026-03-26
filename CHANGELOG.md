@@ -37,8 +37,21 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Created more tests
 
-### [1.0.4] - 2026-03-20
+## [1.0.4] - 2026-03-20
+
+### Added
 
 - Added gifs for instructions
+
+## [1.0.5] - 2026-03-26
+
+### Added
+
+- Added map resizing
+
+### Fixed
+
+- Issues with tile usage and blocked tiles
+
 
 ## [Unreleased]

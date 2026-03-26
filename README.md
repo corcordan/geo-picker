@@ -46,6 +46,11 @@ This extension does not contribute any user-configurable settings.
 
 ## Release Notes
 
+### 1.0.5
+
+- Added map resizing
+- Fixed issues with tiles loading
+
 ### 1.0.4
 
 - Added instructional gifs

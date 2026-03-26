@@ -42,15 +42,31 @@ export function getWebviewContent() {
 		<html lang="en">
 		<head>
 			<meta charset="UTF-8">
+			<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src https://*.tile.openstreetmap.org https: data:; script-src https://unpkg.com 'unsafe-inline'; style-src https://unpkg.com 'unsafe-inline'; font-src https://unpkg.com;">
 			<title>Pick a Coordinate</title>
+			<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 			<style>
 				body { font-family: Arial, sans-serif; padding: 10px; }
 				select, button { margin: 5px; }
+				#map-container { position: relative; width: 100%; }
+				#map { width: 100%; height: 300px; background: #ddd; }
+				#map-resize-handle {
+					width: 100%;
+					height: 6px;
+					cursor: ns-resize;
+					background: #555;
+					border-radius: 3px;
+					margin-bottom: 8px;
+				}
+				#map-resize-handle:hover { background: #888; }
 			</style>
 		</head>
 		<body>
 			<h2>Click a point</h2>
-			<div id="map" style="width:100%; height:300px; background:#ddd;">[Map Placeholder]</div>
+			<div id="map-container">
+				<div id="map"></div>
+				<div id="map-resize-handle"></div>
+			</div>
 			<label for="format">Format:</label>
 			<select id="format">
 				<option value="lat, lng">lat, lng</option>
@@ -72,14 +88,39 @@ export function getWebviewContent() {
 			<button onclick="sendCoordinate()">Insert Coordinate</button>
 
 			<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-				<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-
-				<script>
+			<script>
 				const vscode = acquireVsCodeApi();
 				const map = L.map('map').setView([37.7749, -122.4194], 10);
 				L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-					maxZoom: 19
+					maxZoom: 19,
+					attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				}).addTo(map);
+				setTimeout(() => map.invalidateSize(), 100);
+
+				const mapEl = document.getElementById('map');
+				const handle = document.getElementById('map-resize-handle');
+				let dragging = false;
+				let startY = 0;
+				let startHeight = 0;
+
+				handle.addEventListener('mousedown', (e) => {
+					dragging = true;
+					startY = e.clientY;
+					startHeight = mapEl.offsetHeight;
+					document.body.style.userSelect = 'none';
+				});
+
+				document.addEventListener('mousemove', (e) => {
+					if (!dragging) return;
+					const newHeight = Math.max(150, startHeight + (e.clientY - startY));
+					mapEl.style.height = newHeight + 'px';
+					map.invalidateSize();
+				});
+
+				document.addEventListener('mouseup', () => {
+					dragging = false;
+					document.body.style.userSelect = '';
+				});
 
 				let marker;
 				map.on('click', function(e) {
